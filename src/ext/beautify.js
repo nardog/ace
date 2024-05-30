@@ -1,6 +1,7 @@
 // [WIP]
 
 "use strict";
+var nls = require("../config").nls;
 var TokenIterator = require("../token_iterator").TokenIterator;
 
 function is(token, type) {
@@ -400,7 +401,7 @@ exports.beautify = function(session) {
 
 exports.commands = [{
     name: "beautify",
-    description: "Format selection (Beautify)",
+    description: nls("beautify.commands.beautify", "Format selection (Beautify)"),
     exec: function(editor) {
         exports.beautify(editor.session);
     },

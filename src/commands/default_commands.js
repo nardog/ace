@@ -2,6 +2,7 @@
 
 var lang = require("../lib/lang");
 var config = require("../config");
+var nls = config.nls;
 var Range = require("../range").Range;
 
 function bindKey(win, mac) {
@@ -15,7 +16,7 @@ function bindKey(win, mac) {
 /**@type {import("../../ace-internal").Ace.Command[]} */
 exports.commands = [{
     name: "showSettingsMenu",
-    description: "Show settings menu",
+    description: nls("commands.show-settings-menu", "Show settings menu"),
     bindKey: bindKey("Ctrl-,", "Command-,"),
     exec: function(editor) {
         config.loadModule("ace/ext/settings_menu", function(module) {
@@ -26,7 +27,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "goToNextError",
-    description: "Go to next error",
+    description: nls("commands.go-to-next-error", "Go to next error"),
     bindKey: bindKey("Alt-E", "F4"),
     exec: function(editor) {
         config.loadModule("ace/ext/error_marker", function(module) {
@@ -37,7 +38,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "goToPreviousError",
-    description: "Go to previous error",
+    description: nls("commands.go-to-previous-error", "Go to previous error"),
     bindKey: bindKey("Alt-Shift-E", "Shift-F4"),
     exec: function(editor) {
         config.loadModule("ace/ext/error_marker", function(module) {
@@ -48,19 +49,19 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "selectall",
-    description: "Select all",
+    description: nls("commands.selectall", "Select all"),
     bindKey: bindKey("Ctrl-A", "Command-A"),
     exec: function(editor) { editor.selectAll(); },
     readOnly: true
 }, {
     name: "centerselection",
-    description: "Center selection",
+    description: nls("commands.centerselection", "Center selection"),
     bindKey: bindKey(null, "Ctrl-L"),
     exec: function(editor) { editor.centerSelection(); },
     readOnly: true
 }, {
     name: "gotoline",
-    description: "Go to line...",
+    description: nls("commands.gotoline", "Go to line..."),
     bindKey: bindKey("Ctrl-L", "Command-L"),
     exec: function(editor, line) {
         // backwards compatibility
@@ -85,7 +86,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "toggleFoldWidget",
-    description: "Toggle fold widget",
+    description: nls("commands.toggle-fold-widget", "Toggle fold widget"),
     bindKey: bindKey("F2", "F2"),
     exec: function(editor) { editor.session.toggleFoldWidget(); },
     multiSelectAction: "forEach",
@@ -93,7 +94,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "toggleParentFoldWidget",
-    description: "Toggle parent fold widget",
+    description: nls("commands.toggle-parent-fold-widget", "Toggle parent fold widget"),
     bindKey: bindKey("Alt-F2", "Alt-F2"),
     exec: function(editor) { editor.session.toggleFoldWidget(true); },
     multiSelectAction: "forEach",
@@ -101,21 +102,21 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "foldall",
-    description: "Fold all",
+    description: nls("commands.foldall", "Fold all"),
     bindKey: bindKey(null, "Ctrl-Command-Option-0"),
     exec: function(editor) { editor.session.foldAll(); },
     scrollIntoView: "center",
     readOnly: true
 }, {
     name: "foldAllComments",
-    description: "Fold all comments",
+    description: nls("commands.fold-all-comments", "Fold all comments"),
     bindKey: bindKey(null, "Ctrl-Command-Option-0"),
     exec: function(editor) { editor.session.foldAllComments(); },
     scrollIntoView: "center",
     readOnly: true
 }, {
     name: "foldOther",
-    description: "Fold other",
+    description: nls("commands.fold-other", "Fold other"),
     bindKey: bindKey("Alt-0", "Command-Option-0"),
     exec: function(editor) { 
         editor.session.foldAll();
@@ -125,14 +126,14 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "unfoldall",
-    description: "Unfold all",
+    description: nls("commands.unfoldall", "Unfold all"),
     bindKey: bindKey("Alt-Shift-0", "Command-Option-Shift-0"),
     exec: function(editor) { editor.session.unfold(); },
     scrollIntoView: "center",
     readOnly: true
 }, {
     name: "findnext",
-    description: "Find next",
+    description: nls("commands.findnext", "Find next"),
     bindKey: bindKey("Ctrl-K", "Command-G"),
     exec: function(editor) { editor.findNext(); },
     multiSelectAction: "forEach",
@@ -140,7 +141,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "findprevious",
-    description: "Find previous",
+    description: nls("commands.findprevious", "Find previous"),
     bindKey: bindKey("Ctrl-Shift-K", "Command-Shift-G"),
     exec: function(editor) { editor.findPrevious(); },
     multiSelectAction: "forEach",
@@ -148,7 +149,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "selectOrFindNext",
-    description: "Select or find next",
+    description: nls("commands.select-or-find-next", "Select or find next"),
     bindKey: bindKey("Alt-K", "Ctrl-G"),
     exec: function(editor) {
         if (editor.selection.isEmpty())
@@ -159,7 +160,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "selectOrFindPrevious",
-    description: "Select or find previous",
+    description: nls("commands.select-or-find-previous", "Select or find previous"),
     bindKey: bindKey("Alt-Shift-K", "Ctrl-Shift-G"),
     exec: function(editor) { 
         if (editor.selection.isEmpty())
@@ -170,7 +171,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "find",
-    description: "Find",
+    description: nls("commands.find", "Find"),
     bindKey: bindKey("Ctrl-F", "Command-F"),
     exec: function(editor) {
         config.loadModule("ace/ext/searchbox", function(e) {e.Search(editor);});
@@ -178,13 +179,13 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "overwrite",
-    description: "Overwrite",
+    description: nls("commands.overwrite", "Overwrite"),
     bindKey: "Insert",
     exec: function(editor) { editor.toggleOverwrite(); },
     readOnly: true
 }, {
     name: "selecttostart",
-    description: "Select to start",
+    description: nls("commands.selecttostart", "Select to start"),
     bindKey: bindKey("Ctrl-Shift-Home", "Command-Shift-Home|Command-Shift-Up"),
     exec: function(editor) { editor.getSelection().selectFileStart(); },
     multiSelectAction: "forEach",
@@ -193,7 +194,7 @@ exports.commands = [{
     aceCommandGroup: "fileJump"
 }, {
     name: "gotostart",
-    description: "Go to start",
+    description: nls("commands.gotostart", "Go to start"),
     bindKey: bindKey("Ctrl-Home", "Command-Home|Command-Up"),
     exec: function(editor) { editor.navigateFileStart(); },
     multiSelectAction: "forEach",
@@ -202,7 +203,7 @@ exports.commands = [{
     aceCommandGroup: "fileJump"
 }, {
     name: "selectup",
-    description: "Select up",
+    description: nls("commands.selectup", "Select up"),
     bindKey: bindKey("Shift-Up", "Shift-Up|Ctrl-Shift-P"),
     exec: function(editor) { editor.getSelection().selectUp(); },
     multiSelectAction: "forEach",
@@ -210,7 +211,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "golineup",
-    description: "Go line up",
+    description: nls("commands.golineup", "Go line up"),
     bindKey: bindKey("Up", "Up|Ctrl-P"),
     exec: function(editor, args) { editor.navigateUp(args.times); },
     multiSelectAction: "forEach",
@@ -218,7 +219,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "selecttoend",
-    description: "Select to end",
+    description: nls("commands.selecttoend", "Select to end"),
     bindKey: bindKey("Ctrl-Shift-End", "Command-Shift-End|Command-Shift-Down"),
     exec: function(editor) { editor.getSelection().selectFileEnd(); },
     multiSelectAction: "forEach",
@@ -227,7 +228,7 @@ exports.commands = [{
     aceCommandGroup: "fileJump"
 }, {
     name: "gotoend",
-    description: "Go to end",
+    description: nls("commands.gotoend", "Go to end"),
     bindKey: bindKey("Ctrl-End", "Command-End|Command-Down"),
     exec: function(editor) { editor.navigateFileEnd(); },
     multiSelectAction: "forEach",
@@ -236,7 +237,7 @@ exports.commands = [{
     aceCommandGroup: "fileJump"
 }, {
     name: "selectdown",
-    description: "Select down",
+    description: nls("commands.selectdown", "Select down"),
     bindKey: bindKey("Shift-Down", "Shift-Down|Ctrl-Shift-N"),
     exec: function(editor) { editor.getSelection().selectDown(); },
     multiSelectAction: "forEach",
@@ -244,7 +245,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "golinedown",
-    description: "Go line down",
+    description: nls("commands.golinedown", "Go line down"),
     bindKey: bindKey("Down", "Down|Ctrl-N"),
     exec: function(editor, args) { editor.navigateDown(args.times); },
     multiSelectAction: "forEach",
@@ -252,7 +253,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "selectwordleft",
-    description: "Select word left",
+    description: nls("commands.selectwordleft", "Select word left"),
     bindKey: bindKey("Ctrl-Shift-Left", "Option-Shift-Left"),
     exec: function(editor) { editor.getSelection().selectWordLeft(); },
     multiSelectAction: "forEach",
@@ -260,7 +261,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "gotowordleft",
-    description: "Go to word left",
+    description: nls("commands.gotowordleft", "Go to word left"),
     bindKey: bindKey("Ctrl-Left", "Option-Left"),
     exec: function(editor) { editor.navigateWordLeft(); },
     multiSelectAction: "forEach",
@@ -268,7 +269,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "selecttolinestart",
-    description: "Select to line start",
+    description: nls("commands.selecttolinestart", "Select to line start"),
     bindKey: bindKey("Alt-Shift-Left", "Command-Shift-Left|Ctrl-Shift-A"),
     exec: function(editor) { editor.getSelection().selectLineStart(); },
     multiSelectAction: "forEach",
@@ -276,7 +277,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "gotolinestart",
-    description: "Go to line start",
+    description: nls("commands.gotolinestart", "Go to line start"),
     bindKey: bindKey("Alt-Left|Home", "Command-Left|Home|Ctrl-A"),
     exec: function(editor) { editor.navigateLineStart(); },
     multiSelectAction: "forEach",
@@ -284,7 +285,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "selectleft",
-    description: "Select left",
+    description: nls("commands.selectleft", "Select left"),
     bindKey: bindKey("Shift-Left", "Shift-Left|Ctrl-Shift-B"),
     exec: function(editor) { editor.getSelection().selectLeft(); },
     multiSelectAction: "forEach",
@@ -292,7 +293,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "gotoleft",
-    description: "Go to left",
+    description: nls("commands.gotoleft", "Go to left"),
     bindKey: bindKey("Left", "Left|Ctrl-B"),
     exec: function(editor, args) { editor.navigateLeft(args.times); },
     multiSelectAction: "forEach",
@@ -300,7 +301,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "selectwordright",
-    description: "Select word right",
+    description: nls("commands.selectwordright", "Select word right"),
     bindKey: bindKey("Ctrl-Shift-Right", "Option-Shift-Right"),
     exec: function(editor) { editor.getSelection().selectWordRight(); },
     multiSelectAction: "forEach",
@@ -308,7 +309,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "gotowordright",
-    description: "Go to word right",
+    description: nls("commands.gotowordright", "Go to word right"),
     bindKey: bindKey("Ctrl-Right", "Option-Right"),
     exec: function(editor) { editor.navigateWordRight(); },
     multiSelectAction: "forEach",
@@ -316,7 +317,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "selecttolineend",
-    description: "Select to line end",
+    description: nls("commands.selecttolineend", "Select to line end"),
     bindKey: bindKey("Alt-Shift-Right", "Command-Shift-Right|Shift-End|Ctrl-Shift-E"),
     exec: function(editor) { editor.getSelection().selectLineEnd(); },
     multiSelectAction: "forEach",
@@ -324,7 +325,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "gotolineend",
-    description: "Go to line end",
+    description: nls("commands.gotolineend", "Go to line end"),
     bindKey: bindKey("Alt-Right|End", "Command-Right|End|Ctrl-E"),
     exec: function(editor) { editor.navigateLineEnd(); },
     multiSelectAction: "forEach",
@@ -332,7 +333,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "selectright",
-    description: "Select right",
+    description: nls("commands.selectright", "Select right"),
     bindKey: bindKey("Shift-Right", "Shift-Right"),
     exec: function(editor) { editor.getSelection().selectRight(); },
     multiSelectAction: "forEach",
@@ -340,7 +341,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "gotoright",
-    description: "Go to right",
+    description: nls("commands.gotoright", "Go to right"),
     bindKey: bindKey("Right", "Right|Ctrl-F"),
     exec: function(editor, args) { editor.navigateRight(args.times); },
     multiSelectAction: "forEach",
@@ -348,55 +349,55 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "selectpagedown",
-    description: "Select page down",
+    description: nls("commands.selectpagedown", "Select page down"),
     bindKey: "Shift-PageDown",
     exec: function(editor) { editor.selectPageDown(); },
     readOnly: true
 }, {
     name: "pagedown",
-    description: "Page down",
+    description: nls("commands.pagedown", "Page down"),
     bindKey: bindKey(null, "Option-PageDown"),
     exec: function(editor) { editor.scrollPageDown(); },
     readOnly: true
 }, {
     name: "gotopagedown",
-    description: "Go to page down",
+    description: nls("commands.gotopagedown", "Go to page down"),
     bindKey: bindKey("PageDown", "PageDown|Ctrl-V"),
     exec: function(editor) { editor.gotoPageDown(); },
     readOnly: true
 }, {
     name: "selectpageup",
-    description: "Select page up",
+    description: nls("commands.selectpageup", "Select page up"),
     bindKey: "Shift-PageUp",
     exec: function(editor) { editor.selectPageUp(); },
     readOnly: true
 }, {
     name: "pageup",
-    description: "Page up",
+    description: nls("commands.pageup", "Page up"),
     bindKey: bindKey(null, "Option-PageUp"),
     exec: function(editor) { editor.scrollPageUp(); },
     readOnly: true
 }, {
     name: "gotopageup",
-    description: "Go to page up",
+    description: nls("commands.gotopageup", "Go to page up"),
     bindKey: "PageUp",
     exec: function(editor) { editor.gotoPageUp(); },
     readOnly: true
 }, {
     name: "scrollup",
-    description: "Scroll up",
+    description: nls("commands.scrollup", "Scroll up"),
     bindKey: bindKey("Ctrl-Up", null),
     exec: function(e) { e.renderer.scrollBy(0, -2 * e.renderer.layerConfig.lineHeight); },
     readOnly: true
 }, {
     name: "scrolldown",
-    description: "Scroll down",
+    description: nls("commands.scrolldown", "Scroll down"),
     bindKey: bindKey("Ctrl-Down", null),
     exec: function(e) { e.renderer.scrollBy(0, 2 * e.renderer.layerConfig.lineHeight); },
     readOnly: true
 }, {
     name: "selectlinestart",
-    description: "Select line start",
+    description: nls("commands.selectlinestart", "Select line start"),
     bindKey: "Shift-Home",
     exec: function(editor) { editor.getSelection().selectLineStart(); },
     multiSelectAction: "forEach",
@@ -404,7 +405,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "selectlineend",
-    description: "Select line end",
+    description: nls("commands.selectlineend", "Select line end"),
     bindKey: "Shift-End",
     exec: function(editor) { editor.getSelection().selectLineEnd(); },
     multiSelectAction: "forEach",
@@ -412,19 +413,19 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "togglerecording",
-    description: "Toggle recording",
+    description: nls("commands.togglerecording", "Toggle recording"),
     bindKey: bindKey("Ctrl-Alt-E", "Command-Option-E"),
     exec: function(editor) { editor.commands.toggleRecording(editor); },
     readOnly: true
 }, {
     name: "replaymacro",
-    description: "Replay macro",
+    description: nls("commands.replaymacro", "Replay macro"),
     bindKey: bindKey("Ctrl-Shift-E", "Command-Shift-E"),
     exec: function(editor) { editor.commands.replay(editor); },
     readOnly: true
 }, {
     name: "jumptomatching",
-    description: "Jump to matching",
+    description: nls("commands.jumptomatching", "Jump to matching"),
     bindKey: bindKey("Ctrl-\\|Ctrl-P", "Command-\\"),
     exec: function(editor) { editor.jumpToMatching(); },
     multiSelectAction: "forEach",
@@ -432,7 +433,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "selecttomatching",
-    description: "Select to matching",
+    description: nls("commands.selecttomatching", "Select to matching"),
     bindKey: bindKey("Ctrl-Shift-\\|Ctrl-Shift-P", "Command-Shift-\\"),
     exec: function(editor) { editor.jumpToMatching(true); },
     multiSelectAction: "forEach",
@@ -440,7 +441,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "expandToMatching",
-    description: "Expand to matching",
+    description: nls("commands.expand-to-matching", "Expand to matching"),
     bindKey: bindKey("Ctrl-Shift-M", "Ctrl-Shift-M"),
     exec: function(editor) { editor.jumpToMatching(true, true); },
     multiSelectAction: "forEach",
@@ -448,14 +449,14 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "passKeysToBrowser",
-    description: "Pass keys to browser",
+    description: nls("commands.pass-keys-to-browser", "Pass keys to browser"),
     bindKey: bindKey(null, null),
     exec: function() {},
     passEvent: true,
     readOnly: true
 }, {
     name: "copy",
-    description: "Copy",
+    description: nls("commands.copy", "Copy"),
     exec: function(editor) {
         // placeholder for replay macro
     },
@@ -465,7 +466,7 @@ exports.commands = [{
 // commands disabled in readOnly mode
 {
     name: "cut",
-    description: "Cut",
+    description: nls("commands.cut", "Cut"),
     exec: function(editor) {
         var cutLine = editor.$copyWithEmptySelection && editor.selection.isEmpty();
         var range = cutLine ? editor.selection.getLineRange() : editor.selection.getRange();
@@ -479,111 +480,111 @@ exports.commands = [{
     multiSelectAction: "forEach"
 }, {
     name: "paste",
-    description: "Paste",
+    description: nls("commands.paste", "Paste"),
     exec: function(editor, args) {
         editor.$handlePaste(args);
     },
     scrollIntoView: "cursor"
 }, {
     name: "removeline",
-    description: "Remove line",
+    description: nls("commands.removeline", "Remove line"),
     bindKey: bindKey("Ctrl-D", "Command-D"),
     exec: function(editor) { editor.removeLines(); },
     scrollIntoView: "cursor",
     multiSelectAction: "forEachLine"
 }, {
     name: "duplicateSelection",
-    description: "Duplicate selection",
+    description: nls("commands.duplicate-selection", "Duplicate selection"),
     bindKey: bindKey("Ctrl-Shift-D", "Command-Shift-D"),
     exec: function(editor) { editor.duplicateSelection(); },
     scrollIntoView: "cursor",
     multiSelectAction: "forEach"
 }, {
     name: "sortlines",
-    description: "Sort lines",
+    description: nls("commands.sortlines", "Sort lines"),
     bindKey: bindKey("Ctrl-Alt-S", "Command-Alt-S"),
     exec: function(editor) { editor.sortLines(); },
     scrollIntoView: "selection",
     multiSelectAction: "forEachLine"
 }, {
     name: "togglecomment",
-    description: "Toggle comment",
+    description: nls("commands.togglecomment", "Toggle comment"),
     bindKey: bindKey("Ctrl-/", "Command-/"),
     exec: function(editor) { editor.toggleCommentLines(); },
     multiSelectAction: "forEachLine",
     scrollIntoView: "selectionPart"
 }, {
     name: "toggleBlockComment",
-    description: "Toggle block comment",
+    description: nls("commands.toggle-block-comment", "Toggle block comment"),
     bindKey: bindKey("Ctrl-Shift-/", "Command-Shift-/"),
     exec: function(editor) { editor.toggleBlockComment(); },
     multiSelectAction: "forEach",
     scrollIntoView: "selectionPart"
 }, {
     name: "modifyNumberUp",
-    description: "Modify number up",
+    description: nls("commands.modify-number-up", "Modify number up"),
     bindKey: bindKey("Ctrl-Shift-Up", "Alt-Shift-Up"),
     exec: function(editor) { editor.modifyNumber(1); },
     scrollIntoView: "cursor",
     multiSelectAction: "forEach"
 }, {
     name: "modifyNumberDown",
-    description: "Modify number down",
+    description: nls("commands.modify-number-down", "Modify number down"),
     bindKey: bindKey("Ctrl-Shift-Down", "Alt-Shift-Down"),
     exec: function(editor) { editor.modifyNumber(-1); },
     scrollIntoView: "cursor",
     multiSelectAction: "forEach"
 }, {
     name: "replace",
-    description: "Replace",
+    description: nls("commands.replace", "Replace"),
     bindKey: bindKey("Ctrl-H", "Command-Option-F"),
     exec: function(editor) {
         config.loadModule("ace/ext/searchbox", function(e) {e.Search(editor, true);});
     }
 }, {
     name: "undo",
-    description: "Undo",
+    description: nls("commands.undo", "Undo"),
     bindKey: bindKey("Ctrl-Z", "Command-Z"),
     exec: function(editor) { editor.undo(); }
 }, {
     name: "redo",
-    description: "Redo",
+    description: nls("commands.redo", "Redo"),
     bindKey: bindKey("Ctrl-Shift-Z|Ctrl-Y", "Command-Shift-Z|Command-Y"),
     exec: function(editor) { editor.redo(); }
 }, {
     name: "copylinesup",
-    description: "Copy lines up",
+    description: nls("commands.copylinesup", "Copy lines up"),
     bindKey: bindKey("Alt-Shift-Up", "Command-Option-Up"),
     exec: function(editor) { editor.copyLinesUp(); },
     scrollIntoView: "cursor"
 }, {
     name: "movelinesup",
-    description: "Move lines up",
+    description: nls("commands.movelinesup", "Move lines up"),
     bindKey: bindKey("Alt-Up", "Option-Up"),
     exec: function(editor) { editor.moveLinesUp(); },
     scrollIntoView: "cursor"
 }, {
     name: "copylinesdown",
-    description: "Copy lines down",
+    description: nls("commands.copylinesdown", "Copy lines down"),
     bindKey: bindKey("Alt-Shift-Down", "Command-Option-Down"),
     exec: function(editor) { editor.copyLinesDown(); },
     scrollIntoView: "cursor"
 }, {
     name: "movelinesdown",
-    description: "Move lines down",
+    description: nls("commands.movelinesdown", "Move lines down"),
     bindKey: bindKey("Alt-Down", "Option-Down"),
     exec: function(editor) { editor.moveLinesDown(); },
     scrollIntoView: "cursor"
 }, {
     name: "del",
-    description: "Delete",
+    description: nls("commands.del", "Delete"),
     bindKey: bindKey("Delete", "Delete|Ctrl-D|Shift-Delete"),
     exec: function(editor) { editor.remove("right"); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
 }, {
     name: "backspace",
-    description: "Backspace",
+    description: nls("commands.backspace", "Backspace"),
     bindKey: bindKey(
         "Shift-Backspace|Backspace",
         "Ctrl-Backspace|Shift-Backspace|Backspace|Ctrl-H"
@@ -593,7 +594,7 @@ exports.commands = [{
     scrollIntoView: "cursor"
 }, {
     name: "cut_or_delete",
-    description: "Cut or delete",
+    description: nls("commands.cut_or_delete", "Cut or delete"),
     bindKey: bindKey("Shift-Delete", null),
     exec: function(editor) { 
         if (editor.selection.isEmpty()) {
@@ -606,21 +607,21 @@ exports.commands = [{
     scrollIntoView: "cursor"
 }, {
     name: "removetolinestart",
-    description: "Remove to line start",
+    description: nls("commands.removetolinestart", "Remove to line start"),
     bindKey: bindKey("Alt-Backspace", "Command-Backspace"),
     exec: function(editor) { editor.removeToLineStart(); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
 }, {
     name: "removetolineend",
-    description: "Remove to line end",
+    description: nls("commands.removetolineend", "Remove to line end"),
     bindKey: bindKey("Alt-Delete", "Ctrl-K|Command-Delete"),
     exec: function(editor) { editor.removeToLineEnd(); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
 }, {
     name: "removetolinestarthard",
-    description: "Remove to line start hard",
+    description: nls("commands.removetolinestarthard", "Remove to line start hard"),
     bindKey: bindKey("Ctrl-Shift-Backspace", null),
     exec: function(editor) {
         var range = editor.selection.getRange();
@@ -631,7 +632,7 @@ exports.commands = [{
     scrollIntoView: "cursor"
 }, {
     name: "removetolineendhard",
-    description: "Remove to line end hard",
+    description: nls("commands.removetolineendhard", "Remove to line end hard"),
     bindKey: bindKey("Ctrl-Shift-Delete", null),
     exec: function(editor) {
         var range = editor.selection.getRange();
@@ -642,55 +643,55 @@ exports.commands = [{
     scrollIntoView: "cursor"
 }, {
     name: "removewordleft",
-    description: "Remove word left",
+    description: nls("commands.removewordleft", "Remove word left"),
     bindKey: bindKey("Ctrl-Backspace", "Alt-Backspace|Ctrl-Alt-Backspace"),
     exec: function(editor) { editor.removeWordLeft(); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
 }, {
     name: "removewordright",
-    description: "Remove word right",
+    description: nls("commands.removewordright", "Remove word right"),
     bindKey: bindKey("Ctrl-Delete", "Alt-Delete"),
     exec: function(editor) { editor.removeWordRight(); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
 }, {
     name: "outdent",
-    description: "Outdent",
+    description: nls("commands.outdent", "Outdent"),
     bindKey: bindKey("Shift-Tab", "Shift-Tab"),
     exec: function(editor) { editor.blockOutdent(); },
     multiSelectAction: "forEach",
     scrollIntoView: "selectionPart"
 }, {
     name: "indent",
-    description: "Indent",
+    description: nls("commands.indent", "Indent"),
     bindKey: bindKey("Tab", "Tab"),
     exec: function(editor) { editor.indent(); },
     multiSelectAction: "forEach",
     scrollIntoView: "selectionPart"
 }, {
     name: "blockoutdent",
-    description: "Block outdent",
+    description: nls("commands.blockoutdent", "Block outdent"),
     bindKey: bindKey("Ctrl-[", "Ctrl-["),
     exec: function(editor) { editor.blockOutdent(); },
     multiSelectAction: "forEachLine",
     scrollIntoView: "selectionPart"
 }, {
     name: "blockindent",
-    description: "Block indent",
+    description: nls("commands.blockindent", "Block indent"),
     bindKey: bindKey("Ctrl-]", "Ctrl-]"),
     exec: function(editor) { editor.blockIndent(); },
     multiSelectAction: "forEachLine",
     scrollIntoView: "selectionPart"
 }, {
     name: "insertstring",
-    description: "Insert string",
+    description: nls("commands.insertstring", "Insert string"),
     exec: function(editor, str) { editor.insert(str); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
 }, {
     name: "inserttext",
-    description: "Insert text",
+    description: nls("commands.inserttext", "Insert text"),
     exec: function(editor, args) {
         editor.insert(lang.stringRepeat(args.text  || "", args.times || 1));
     },
@@ -698,41 +699,41 @@ exports.commands = [{
     scrollIntoView: "cursor"
 }, {
     name: "splitline",
-    description: "Split line",
+    description: nls("commands.splitline", "Split line"),
     bindKey: bindKey(null, "Ctrl-O"),
     exec: function(editor) { editor.splitLine(); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
 }, {
     name: "transposeletters",
-    description: "Transpose letters",
+    description: nls("commands.transposeletters", "Transpose letters"),
     bindKey: bindKey("Alt-Shift-X", "Ctrl-T"),
     exec: function(editor) { editor.transposeLetters(); },
     multiSelectAction: function(editor) {editor.transposeSelections(1); },
     scrollIntoView: "cursor"
 }, {
     name: "touppercase",
-    description: "To uppercase",
+    description: nls("commands.touppercase", "To uppercase"),
     bindKey: bindKey("Ctrl-U", "Ctrl-U"),
     exec: function(editor) { editor.toUpperCase(); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
 }, {
     name: "tolowercase",
-    description: "To lowercase",
+    description: nls("commands.tolowercase", "To lowercase"),
     bindKey: bindKey("Ctrl-Shift-U", "Ctrl-Shift-U"),
     exec: function(editor) { editor.toLowerCase(); },
     multiSelectAction: "forEach",
     scrollIntoView: "cursor"
 }, {
     name: "autoindent",
-    description: "Auto Indent",
+    description: nls("commands.autoindent", "Auto Indent"),
     bindKey: bindKey(null, null),
     exec: function(editor) { editor.autoIndent(); },
     scrollIntoView: "animate"
 }, {
     name: "expandtoline",
-    description: "Expand to line",
+    description: nls("commands.expandtoline", "Expand to line"),
     bindKey: bindKey("Ctrl-Shift-L", "Command-Shift-L"),
     exec: function(editor) {
         var range = editor.selection.getRange();
@@ -750,7 +751,7 @@ exports.commands = [{
     exec: function(editor) { editor.openLink(); }
 }, {
     name: "joinlines",
-    description: "Join lines",
+    description: nls("commands.joinlines", "Join lines"),
     bindKey: bindKey(null, null),
     exec: function(editor) {
         var isBackwards = editor.selection.isBackwards();
@@ -791,7 +792,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "invertSelection",
-    description: "Invert selection",
+    description: nls("commands.invert-selection", "Invert selection"),
     bindKey: bindKey(null, null),
     exec: function(editor) {
         var endRow = editor.session.doc.getLength() - 1;
@@ -833,7 +834,7 @@ exports.commands = [{
     scrollIntoView: "none"
 }, {
     name: "addLineAfter",
-    description: "Add new line after the current line",
+    description: nls("commands.add-line-after", "Add new line after the current line"),
     exec: function(editor) {
         editor.selection.clearSelection();
         editor.navigateLineEnd();
@@ -843,7 +844,7 @@ exports.commands = [{
     scrollIntoView: "cursor"
 }, {
     name: "addLineBefore",
-    description: "Add new line before the current line",
+    description: nls("commands.add-line-before", "Add new line before the current line"),
     exec: function(editor) {
         editor.selection.clearSelection();
         var cursor = editor.getCursorPosition();
@@ -862,7 +863,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "openCommandPalette",
-    description: "Open command palette",
+    description: nls("commands.open-command-palette", "Open command palette"),
     bindKey: bindKey("F1", "F1"),
     exec: function(editor) {
         editor.prompt({ $type: "commands" });
@@ -870,7 +871,7 @@ exports.commands = [{
     readOnly: true
 }, {
     name: "modeSelect",
-    description: "Change language mode...",
+    description: nls("commands.mode-select", "Change language mode..."),
     bindKey: bindKey(null, null),
     exec: function(editor) {
         editor.prompt({ $type: "modes" });
@@ -881,7 +882,7 @@ exports.commands = [{
 for (var i = 1; i < 9; i++) {
     exports.commands.push({
         name: "foldToLevel" + i,
-        description: "Fold To Level " + i,
+        description: nls("commands.fold-to-level", "Fold To Level $0", [i]),
         level: i,
         exec: function(editor) { editor.session.foldToLevel(this.level); },
         scrollIntoView: "center",

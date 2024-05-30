@@ -5,6 +5,7 @@
  * @typedef {import("../edit_session").EditSession} EditSession
  */
 
+var nls = require("../config").nls;
 var lang = require("../lib/lang");
 
 // based on http://www.freehackers.org/Indent_Finder
@@ -211,27 +212,27 @@ exports.$parseArg = function(arg) {
 
 exports.commands = [{
     name: "detectIndentation",
-    description: "Detect indentation from content",
+    description: nls("whitespace.commands.detect-indentation", "Detect indentation from content"),
     exec: function(editor) {
         exports.detectIndentation(editor.session);
         // todo show message?
     }
 }, {
     name: "trimTrailingSpace",
-    description: "Trim trailing whitespace",
+    description: nls("whitespace.commands.trim-trailing-space", "Trim trailing whitespace"),
     exec: function(editor, args) {
         exports.trimTrailingSpace(editor.session, args);
     }
 }, {
     name: "convertIndentation",
-    description: "Convert indentation to ...",
+    description: nls("whitespace.commands.convert-indentation", "Convert indentation to ..."),
     exec: function(editor, arg) {
         var indent = exports.$parseArg(arg);
         exports.convertIndentation(editor.session, indent.ch, indent.length);
     }
 }, {
     name: "setIndentation",
-    description: "Set indentation",
+    description: nls("whitespace.commands.set-indentation", "Set indentation"),
     exec: function(editor, arg) {
         var indent = exports.$parseArg(arg);
         indent.length && editor.session.setTabSize(indent.length);

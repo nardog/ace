@@ -1,3 +1,4 @@
+var nls = require("../config").nls;
 
 /**
  * commands to enter multiselect mode
@@ -5,63 +6,63 @@
  */
 exports.defaultCommands = [{
     name: "addCursorAbove",
-    description: "Add cursor above",
+    description: nls("multi-select-commands.add-cursor-above", "Add cursor above"),
     exec: function(editor) { editor.selectMoreLines(-1); },
     bindKey: {win: "Ctrl-Alt-Up", mac: "Ctrl-Alt-Up"},
     scrollIntoView: "cursor",
     readOnly: true
 }, {
     name: "addCursorBelow",
-    description: "Add cursor below",
+    description: nls("multi-select-commands.add-cursor-below", "Add cursor below"),
     exec: function(editor) { editor.selectMoreLines(1); },
     bindKey: {win: "Ctrl-Alt-Down", mac: "Ctrl-Alt-Down"},
     scrollIntoView: "cursor",
     readOnly: true
 }, {
     name: "addCursorAboveSkipCurrent",
-    description: "Add cursor above (skip current)",
+    description: nls("multi-select-commands.add-cursor-above-skip-current", "Add cursor above (skip current)"),
     exec: function(editor) { editor.selectMoreLines(-1, true); },
     bindKey: {win: "Ctrl-Alt-Shift-Up", mac: "Ctrl-Alt-Shift-Up"},
     scrollIntoView: "cursor",
     readOnly: true
 }, {
     name: "addCursorBelowSkipCurrent",
-    description: "Add cursor below (skip current)",
+    description: nls("multi-select-commands.add-cursor-below-skip-current", "Add cursor below (skip current)"),
     exec: function(editor) { editor.selectMoreLines(1, true); },
     bindKey: {win: "Ctrl-Alt-Shift-Down", mac: "Ctrl-Alt-Shift-Down"},
     scrollIntoView: "cursor",
     readOnly: true
 }, {
     name: "selectMoreBefore",
-    description: "Select more before",
+    description: nls("multi-select-commands.select-more-before", "Select more before"),
     exec: function(editor) { editor.selectMore(-1); },
     bindKey: {win: "Ctrl-Alt-Left", mac: "Ctrl-Alt-Left"},
     scrollIntoView: "cursor",
     readOnly: true
 }, {
     name: "selectMoreAfter",
-    description: "Select more after",
+    description: nls("multi-select-commands.select-more-after", "Select more after"),
     exec: function(editor) { editor.selectMore(1); },
     bindKey: {win: "Ctrl-Alt-Right", mac: "Ctrl-Alt-Right"},
     scrollIntoView: "cursor",
     readOnly: true
 }, {
     name: "selectNextBefore",
-    description: "Select next before",
+    description: nls("multi-select-commands.select-next-before", "Select next before"),
     exec: function(editor) { editor.selectMore(-1, true); },
     bindKey: {win: "Ctrl-Alt-Shift-Left", mac: "Ctrl-Alt-Shift-Left"},
     scrollIntoView: "cursor",
     readOnly: true
 }, {
     name: "selectNextAfter",
-    description: "Select next after",
+    description: nls("multi-select-commands.select-next-after", "Select next after"),
     exec: function(editor) { editor.selectMore(1, true); },
     bindKey: {win: "Ctrl-Alt-Shift-Right", mac: "Ctrl-Alt-Shift-Right"},
     scrollIntoView: "cursor",
     readOnly: true
 }, {
     name: "toggleSplitSelectionIntoLines",
-    description: "Split selection into lines",
+    description: nls("multi-select-commands.toggle-split-selection-into-lines", "Split selection into lines"),
     exec: function(editor) {
         if (editor.multiSelect.rangeCount > 1)
             editor.multiSelect.joinSelections();
@@ -72,18 +73,18 @@ exports.defaultCommands = [{
     readOnly: true
 }, {
     name: "splitSelectionIntoLines",
-    description: "Split into lines",
+    description: nls("multi-select-commands.split-selection-into-lines", "Split into lines"),
     exec: function(editor) { editor.multiSelect.splitIntoLines(); },
     readOnly: true
 }, {
     name: "alignCursors",
-    description: "Align cursors",
+    description: nls("multi-select-commands.align-cursors", "Align cursors"),
     exec: function(editor) { editor.alignCursors(); },
     bindKey: {win: "Ctrl-Alt-A", mac: "Ctrl-Alt-A"},
     scrollIntoView: "cursor"
 }, {
     name: "findAll",
-    description: "Find all",
+    description: nls("multi-select-commands.find-all", "Find all"),
     exec: function(editor) { editor.findAll(); },
     bindKey: {win: "Ctrl-Alt-K", mac: "Ctrl-Alt-G"},
     scrollIntoView: "cursor",
@@ -96,7 +97,7 @@ exports.defaultCommands = [{
  */
 exports.multiSelectCommands = [{
     name: "singleSelection",
-    description: "Single selection",
+    description: nls("multi-select-commands.single-selection", "Single selection"),
     bindKey: "esc",
     exec: function(editor) { editor.exitMultiSelectMode(); },
     scrollIntoView: "cursor",
